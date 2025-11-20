@@ -2,6 +2,12 @@
 
 A modern, feature-rich e-commerce storefront built with Angular 19, showcasing best practices in state management, routing, and user experience design.
 
+## Screenshots
+<div align="center">
+  <img src="https://github.com/Deltas-Lee/Storefront/blob/master/src/assets/products-image.png" alt="Products Page" width="48%" height="55%" />
+  <img src="https://github.com/Deltas-Lee/Storefront/blob/master/src/assets/product-details-img.png" alt="Product Details" width="48%" />
+</div>
+
 ## 🚀 Quick Start
 
 ### Prerequisites
