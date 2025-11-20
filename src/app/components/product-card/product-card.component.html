@@ -1,0 +1,8 @@
+<div class="product-card" (click)="viewDetails()" role="button" tabindex="0"
+  (keydown.enter)="viewDetails()" (keydown.space)="viewDetails()">
+  <img [src]="product.image" [alt]="product.title" />
+  <h3>{{ product.title }}</h3>
+  <p>{{ product.description }}</p>
+  <p class="price"><strong>R{{ product.price }}</strong></p>
+  <button (click)="addToCart(); $event.stopPropagation()">Add to Cart</button>
+</div>

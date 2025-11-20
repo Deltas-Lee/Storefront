@@ -1,0 +1,31 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+<div class="product-layout" *ngIf="!isLoading">
+  <aside class="filters" aria-label="Category filters">
+    <h2 class="filters-title">Categories</h2>
+    <ul class="filters-list" role="list">
+      <li>
+        <button type="button" class="filter-btn"
+          [class.active]="!selectedCategory" (click)="selectCategory(null)"
+          aria-label="Show all categories">All</button>
+      </li>
+      <li *ngFor="let cat of categories">
+        <button type="button" class="filter-btn"
+          [class.active]="selectedCategory === cat"
+          (click)="selectCategory(cat)"
+          [attr.aria-pressed]="selectedCategory === cat"
+          [attr.aria-label]="'Filter by ' + cat">{{ cat }}</button>
+      </li>
+    </ul>
+  </aside>
+  <div class="product-list" aria-live="polite" aria-label="Filtered products">
+    <app-product-card *ngFor="let product of filteredProducts()"
+      [product]="product"
+      (showDetails)="showProductDetails($event)"></app-product-card>
+    <p class="empty-filter" *ngIf="!filteredProducts().length">No products found
+      for selected category.</p>
+  </div>
+</div>
+
+<app-product-details [product]="selectedProduct" [isOpen]="isModalOpen"
+  (close)="closeProductDetails()"></app-product-details>

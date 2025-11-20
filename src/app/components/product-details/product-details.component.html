@@ -1,0 +1,63 @@
+<div class="modal-backdrop" *ngIf="isOpen && product"
+  (click)="onBackdropClick($event)" [@fadeIn]>
+  <div class="modal-content" role="dialog" aria-modal="true"
+    [attr.aria-labelledby]="'product-title-' + product.id">
+    <button type="button" class="close-btn" (click)="closeModal()"
+      aria-label="Close product details">
+      <span aria-hidden="true">×</span>
+    </button>
+
+    <div class="modal-body">
+      <div class="image-section">
+        <img [src]="product.image" [alt]="product.title" loading="lazy" />
+      </div>
+
+      <div class="details-section">
+        <div class="category-badge" *ngIf="product.category">
+          <span>{{ product.category }}</span>
+        </div>
+
+        <h2 [id]="'product-title-' + product.id" class="product-title">{{
+          product.title }}</h2>
+
+        <div class="rating-section" *ngIf="product.rating">
+          <div class="stars"
+            [attr.aria-label]="'Rating ' + product.rating.rate + ' out of 5'">
+            <span *ngFor="let star of getRatingStars()" class="star"
+              [class.full]="star === 'full'" [class.half]="star === 'half'"
+              [class.empty]="star === 'empty'">★</span>
+          </div>
+          <span class="rating-text">{{ product.rating.rate }} ({{
+            product.rating.count }} reviews)</span>
+        </div>
+
+        <p class="description">{{ product.description }}</p>
+
+        <div class="meta-info">
+          <div class="meta-item">
+            <span class="meta-label">Product ID:</span>
+            <span class="meta-value">#{{ product.id }}</span>
+          </div>
+          <div class="meta-item" *ngIf="product.category">
+            <span class="meta-label">Category:</span>
+            <span class="meta-value">{{ product.category }}</span>
+          </div>
+        </div>
+
+        <div class="price-section">
+          <span class="price-label">Price:</span>
+          <span class="price-value">R{{ product.price | number:'1.2-2' }}</span>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="btn-add-cart" (click)="addToCart()">
+            <span>Add to Cart</span>
+          </button>
+          <button type="button" class="btn-close" (click)="closeModal()">
+            <span>Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
